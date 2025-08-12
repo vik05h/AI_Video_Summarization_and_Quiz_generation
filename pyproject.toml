@@ -1,0 +1,22 @@
+[project]
+name = "ai-video-summarization"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "email-validator>=2.2.0",
+    "fastapi>=0.116.0",
+    "ffmpeg-python>=0.2.0",
+    "firebase-admin>=6.9.0",
+    "openai>=1.93.3",
+    "openai-whisper>=20250625",
+    "python-dotenv>=1.1.1",
+    "python-multipart>=0.0.20",
+    "pytube>=15.0.0",
+    "pytubefix>=9.3.0",
+    "sentencepiece>=0.2.0",
+    "torch>=2.7.1",
+    "transformers>=4.53.1",
+    "uvicorn[standard]>=0.35.0",
+]

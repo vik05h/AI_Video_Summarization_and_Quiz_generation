@@ -1,0 +1,17 @@
+<p>quiz works!</p>
+<button class="btn btn-primary" (click)="getQuiz()">Generate Quiz</button>
+
+
+<div *ngFor="let q of quiz; let i = index" class="quiz-question">
+  
+  <h3>Question {{ i + 1 }}: {{ q.question }}</h3>
+  
+  <ul>
+    <li *ngFor="let option of q.options">{{ option }}</li>
+  </ul>
+  
+  <p>
+    <strong>Answer:</strong> {{ q.answer }}
+  </p>
+
+</div>

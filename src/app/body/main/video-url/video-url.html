@@ -1,0 +1,11 @@
+<div class="row mt-5">
+    <div class="col">
+        <input type="text" placeholder="Enter video URL" [(ngModel)]="videoUrl" />
+    </div>
+    <div class="col">
+        <button class="btn btn-primary" (click)="submitUrl(videoUrl)" routerLink="/quiz">Submit</button>
+    </div>
+    <div class="col">
+        <p>{{this.api.summary}}</p>
+    </div>
+</div>

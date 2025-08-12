@@ -1,0 +1,27 @@
+# --- Core Web Framework ---
+fastapi
+uvicorn[standard]       # ASGI server to run FastAPI, [standard] includes performance extras
+python-multipart      # Required by FastAPI for file uploads (form data)
+
+# --- AI & Machine Learning ---
+# For Speech-to-Text
+openai-whisper
+
+# For Summarization and Quiz Generation (via OpenAI API)
+openai
+
+# For running AI models locally (Whisper, Transformers, etc.)
+torch
+
+# For using open-source Hugging Face models (alternative to OpenAI API)
+transformers
+sentencepiece         # A dependency for many transformers models
+
+# --- Video & Audio Processing ---
+ffmpeg-python         # Python wrapper for the ffmpeg tool
+
+# --- Database Integration ---
+firebase-admin        # Official Python SDK for Firebase
+
+# --- Utilities ---
+python-dotenv         # For managing environment variables (e.g., API keys) from a .env file
