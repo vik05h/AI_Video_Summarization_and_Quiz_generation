@@ -109,7 +109,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👨💻 Author
 
-**Your Name**
 - GitHub: [@vik05h](https://github.com/vik05h)
 
 ***
