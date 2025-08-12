@@ -1,59 +1,119 @@
-# AIVideoSummarization
+# 🎥 AI Video Summarization & Quiz Generation
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.6.
+An **end-to-end AI-powered web application** that processes videos to create intelligent summaries and generate interactive quizzes for enhanced learning.
 
-## Development server
+## 🚀 Features
 
-To start a local development server, run:
+- 🎬 **Video Input Options** — YouTube URL or direct file upload
+- 🎧 **Audio Extraction** — FFmpeg-powered audio processing
+- 🗣 **Speech-to-Text** — OpenAI Whisper with GPU acceleration (RTX 4050 optimized)
+- 📃 **AI Summarization** — Intelligent text summarization via OpenRouter API
+- ❓ **Quiz Generation** — Auto-generated multiple-choice questions from transcript
+- 🌐 **Full-Stack Solution** — Angular 20 frontend + FastAPI backend
+- ⚡ **GPU Acceleration** — CUDA-enabled Whisper for faster transcription
 
-```bash
-ng serve
-```
+## 🛠 Tech Stack
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+**Backend**
+- **FastAPI** — Modern Python web framework
+- **uv** — Fast Python package and environment manager
+- **pytubefix** — YouTube video downloading
+- **ffmpeg-python** — Audio extraction from video
+- **OpenAI Whisper** — Speech-to-text transcription
+- **PyTorch (CUDA)** — GPU-accelerated ML processing
+- **OpenRouter API** — AI model access for summarization and quiz generation
 
-## Code scaffolding
+**Frontend**
+- **Angular 20** — Modern web framework with standalone components
+- **TypeScript** — Type-safe JavaScript
+- **RxJS** — Reactive programming with Observables
+- **HttpClient** — API communication
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
 
-```bash
-ng generate component component-name
-```
+## 🚀 Getting Started & Installation
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### Prerequisites
 
-```bash
-ng generate --help
-```
+Before installing, ensure you have:
 
-## Building
+- **[uv](https://docs.astral.sh/uv/getting-started/installation/)** — Python environment & dependency manager
+- **Node.js** 18+ and **Angular CLI** ^20
+- **FFmpeg** installed and available in your PATH (`ffmpeg -version` should work)
+- **NVIDIA GPU + CUDA** *(optional)* for faster Whisper transcription
+- **OpenRouter API key** *(optional but recommended)* for AI features
 
-To build the project run:
+### 1. Clone the Repository
 
-```bash
-ng build
-```
+- `git clone https://github.com/vik05h/AI_Video_Summarization_and_Quiz_generation.git`
+- cd AI_Video_Summarization_and_Quiz_generation
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
-## Running unit tests
+### 2. Backend Setup (FastAPI + Python)
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+#### Install Python dependencies
+- Using uv (recommended)
+- Sync the project's dependencies with the environment: ```uv sync```
 
-```bash
-ng test
-```
+# Alternative using pip
+#### On Mac `source .venv/bin/activate` 
+#### On Windows: `.venv\Scripts\activate`
+```pip install -r requirement.txt```
 
-## Running end-to-end tests
+#### Set environment variables
+Create a `.venv` file in the root directory:
 
-For end-to-end (e2e) testing, run:
+#### Install FFmpeg (Required)
+- **Windows**: Download FFmpeg and add to PATH
+- **macOS**: `brew install ffmpeg`
+- **Linux**: `sudo apt install ffmpeg`
 
-```bash
-ng e2e
-```
+Verify installation: `ffmpeg -version`
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+#### Enable GPU acceleration (Optional - RTX 4050)
+- ````uv pip uninstall torch````   
+- ````uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118````   
 
-## Additional Resources
+#### Run the FastAPI server
+uv run uvicorn main:app --reload
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Backend available at [**http://127.0.0.1:8000**](http://127.0.0.1:8000)
+
+### 3. Frontend Setup (Angular 20)
+
+#### Install Node.js dependencies
+
+#### Run the Angular development server
+- To run the Server: `ng s`
+
+
+## 🚀 Future Enhancements
+
+- [ ] Multiple language support
+- [ ] Advanced quiz types (short answer, true/false)
+- [ ] User authentication and progress tracking
+- [ ] Batch video processing
+- [ ] Export functionality (PDF, DOCX)
+- [ ] Integration with learning management systems
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 👨💻 Author
+
+**Your Name**
+- GitHub: [@vik05h](https://github.com/vik05h)
+
+***
+
+⭐ **Star this repository if you found it helpful!**
+
+
