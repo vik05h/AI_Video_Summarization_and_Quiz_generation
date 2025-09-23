@@ -293,6 +293,48 @@
   animation: expandIn 0.5s ease-out;
 }
 
+/* video-url.component.css */
+
+/* Styling for the quiz loading card */
+.quiz-loading-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  background-color: #f8f9fa;
+  border-radius: 15px;
+  text-align: center;
+  border: 1px solid #e0e0e0;
+}
+
+.quiz-loading-card h3 {
+  margin: 20px 0 10px;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.quiz-loading-card p {
+  margin: 0;
+  color: #667;
+}
+
+/* Re-using the spinner from before, but making it bigger and changing color */
+.quiz-loading-card .spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top-color: #6f42c1; /* Use your primary color */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* Animations */
 @keyframes fadeInUp {
   from {

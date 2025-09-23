@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Api,QuizResponse } from '../../../services/api';
 import { CommonModule } from '@angular/common';
 
@@ -8,10 +8,14 @@ import { CommonModule } from '@angular/common';
   templateUrl: './quiz.html',
   styleUrl: './quiz.css'
 })
-export class Quiz{
+export class Quiz implements OnInit{
   constructor(public api: Api) { }
   transcript: string = '';
   quiz: QuizResponse['quiz_structure'] = [];
+
+  ngOnInit(): void {
+    this.getQuiz();
+  }
 
   getQuiz(){
     this.transcript = this.api.transcript;

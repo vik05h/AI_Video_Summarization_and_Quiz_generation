@@ -39,6 +39,7 @@ export class VideoUrl {
   transcript: string = '';
   isLoading: boolean = false;
   showQuiz: boolean = false;
+  isGeneratingQuiz: boolean = false;
   
   constructor(public api: Api) { }
 
@@ -52,7 +53,7 @@ export class VideoUrl {
     this.api.urlSummary(videoUrl).subscribe({
       next: (res: VideoProcessingResponse) => {
         this.api.summary = res.summary;
-        this.showQuiz = true;
+        
         this.api.transcript = res.transcript;
         this.isLoading = false;
         
@@ -67,8 +68,7 @@ export class VideoUrl {
       }
     });
   }
-
-
+  
   // Method to validate YouTube URL (optional enhancement)
   isValidYouTubeUrl(url: string): boolean {
     const youtubeRegex = /^(https?\:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+/;

@@ -1,3 +1,4 @@
+// video-url.html
 <div class="video-summarizer-container">
   <div class="header-section">
     <h1 class="main-title">Get Summary of your video</h1>
@@ -61,9 +62,17 @@
       </div>
     </div>
   </div>
+
   <!-- Quiz Section -->
   <div class="quiz-section" *ngIf="api.summary && !isLoading" [@slideInUp]>
-    <div class="quiz-container" *ngIf="showQuiz">
+    <div class="quiz-prompt">
+      <h3>Ready to test your knowledge?</h3>
+      <button class="generate-quiz-btn" (click)="showQuiz = true">
+        ✨ Generate Quiz
+      </button>
+    </div>
+    
+    <div class="quiz-container" *ngIf="showQuiz" [@expandIn]>
       <app-quiz></app-quiz>
     </div>
   </div>
