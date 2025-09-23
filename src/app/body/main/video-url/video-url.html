@@ -1,11 +1,70 @@
-<div class="row mt-5">
-    <div class="col">
-        <input type="text" placeholder="Enter video URL" [(ngModel)]="videoUrl" />
+<div class="video-summarizer-container">
+  <div class="header-section">
+    <h1 class="main-title">Get Summary of your video</h1>
+    <div class="tab-buttons">
+      <button class="tab-btn active">YT Link</button>
+      <button class="tab-btn">Upload Video manually</button>
     </div>
-    <div class="col">
-        <button class="btn btn-primary" (click)="submitUrl(videoUrl)" routerLink="/quiz">Submit</button>
+  </div>
+
+  <div class="input-section" [class.loading]="isLoading">
+    <div class="input-group">
+      <div class="input-wrapper">
+        <input 
+          type="text" 
+          class="video-input"
+          placeholder="Enter video URL" 
+          [(ngModel)]="videoUrl"
+          [disabled]="isLoading"
+          (keyup.enter)="submitUrl(videoUrl)"
+        />
+        <div class="input-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+            <polygon points="9.75,15.02 15.5,11.75 9.75,8.48"></polygon>
+          </svg>
+        </div>
+      </div>
+      
+      <button 
+        class="submit-btn" 
+        (click)="submitUrl(videoUrl)" 
+        [disabled]="!videoUrl.trim() || isLoading"
+        [class.loading]="isLoading"
+      >
+        <span class="btn-text" *ngIf="!isLoading">Submit</span>
+        <div class="spinner" *ngIf="isLoading"></div>
+      </button>
     </div>
-    <div class="col">
-        <p>{{this.api.summary}}</p>
+  </div>
+
+  <!-- Loading State -->
+  <div class="loading-section" *ngIf="isLoading" [@slideInUp]>
+    <div class="loading-card">
+      <div class="loading-animation">
+        <div class="pulse-loader"></div>
+      </div>
+      <h3>Processing your video...</h3>
+      <p>This may take a few moments</p>
     </div>
+  </div>
+
+  <!-- Summary Section -->
+  <div class="summary-section" *ngIf="api.summary && !isLoading" [@slideInUp]>
+    <div class="summary-card">
+      <div class="card-header">
+        <h3>Video Summary</h3>
+        <span class="summary-badge">Ready</span>
+      </div>
+      <div class="summary-content">
+        <p>{{ api.summary }}</p>
+      </div>
+    </div>
+  </div>
+  <!-- Quiz Section -->
+  <div class="quiz-section" *ngIf="api.summary && !isLoading" [@slideInUp]>
+    <div class="quiz-container" *ngIf="showQuiz">
+      <app-quiz></app-quiz>
+    </div>
+  </div>
 </div>

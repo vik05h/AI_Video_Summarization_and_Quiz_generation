@@ -1,17 +1,25 @@
-<p>quiz works!</p>
-<button class="btn btn-primary" (click)="getQuiz()">Generate Quiz</button>
+<div class="quiz-controls">
+  <p>Ready to test your knowledge?</p>
+  <button class="generate-btn" (click)="getQuiz()">✨ Generate Quiz</button>
+</div>
 
+<div class="quiz-container">
 
-<div *ngFor="let q of quiz; let i = index" class="quiz-question">
-  
-  <h3>Question {{ i + 1 }}: {{ q.question }}</h3>
-  
-  <ul>
-    <li *ngFor="let option of q.options">{{ option }}</li>
-  </ul>
-  
-  <p>
-    <strong>Answer:</strong> {{ q.answer }}
-  </p>
+  <div *ngFor="let q of quiz; let i = index" class="quiz-card">
 
+    <div class="question-header">
+      <span class="question-number">{{ i + 1 }}</span>
+      <h3>{{ q.question }}</h3>
+    </div>
+
+    <ul class="options-list">
+      <li *ngFor="let option of q.options" class="option-item">{{ option }}</li>
+    </ul>
+
+    <div class="answer-section">
+      <strong>Answer:</strong>
+      <span class="answer-text">{{ q.answer }}</span>
+    </div>
+
+  </div>
 </div>

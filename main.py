@@ -5,8 +5,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from pytubefix import YouTube
 from openai import OpenAI
+from dotenv import load_dotenv
 
 app = FastAPI()
+load_dotenv()
 
 # --- CORS Configuration ---
 origins = [
@@ -54,7 +56,7 @@ def transcribe_audio(audio_path: str):
         raise HTTPException(status_code=500, detail=f"Transcription failed: {str(e)}")
     
 client = OpenAI(
-    api_key="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",
+    api_key = os.getenv("OPENAI_API_KEY"),
     base_url="https://openrouter.ai/api/v1",
 )
 
@@ -64,7 +66,7 @@ def summarize_text(transcript: str):
     """
     try:
         response = client.chat.completions.create(
-            model="openai/gpt-4.1-mini",
+            model="x-ai/grok-4-fast:free",
             messages=[
                 {"role": "system", "content": "You are a helpful assistant that creates concise summaries of video transcripts."},
                 {"role": "user", "content": f"Please summarize the following transcript in 5-10 key points:\n\n{transcript}"}
@@ -125,7 +127,7 @@ async def generate_quiz(req: QuizRequest):
     )
     try:
         response = client.chat.completions.create(
-            model="deepseek/deepseek-chat", # Changed to the chat model which often follows instructions better
+            model="x-ai/grok-4-fast:free", # Changed to the chat model which often follows instructions better
             messages=[{"role": "user", "content": prompt}],
             max_tokens=1000 # Increased slightly just in case
         )

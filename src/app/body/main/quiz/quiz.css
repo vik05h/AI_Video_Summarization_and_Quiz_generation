@@ -1,0 +1,135 @@
+/* Import a clean, modern font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+/* --- Global Styles --- */
+:host {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f4f7f9; /* Light gray background for the page */
+  display: block;
+  padding: 30px;
+}
+
+/* --- Quiz Controls & Button --- */
+.quiz-controls {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.quiz-controls p {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.generate-btn {
+  background: linear-gradient(45deg, #6f42c1, #4a90e2);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.generate-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+
+/* --- Main Quiz Container --- */
+.quiz-container {
+  display: flex;
+  flex-direction: column;
+  gap: 25px; /* Space between each question card */
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+
+/* --- Individual Question Card --- */
+.quiz-card {
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 25px 30px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  border-left: 5px solid #6f42c1; /* Accent color border */
+  transition: transform 0.2s ease-in-out;
+}
+
+.quiz-card:hover {
+    transform: scale(1.02); /* Slight zoom effect on hover */
+}
+
+
+/* --- Question Header (Number + Text) --- */
+.question-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.question-header h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.question-number {
+  background-color: #6f42c1;
+  color: white;
+  font-weight: 600;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0; /* Prevents the number from shrinking */
+}
+
+
+/* --- Options List --- */
+.options-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.option-item {
+  background-color: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 12px 15px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.option-item:hover {
+  background-color: #e9ecef;
+  border-color: #4a90e2;
+  color: #4a90e2;
+}
+
+
+/* --- Answer Section --- */
+.answer-section {
+  margin-top: 20px;
+  background-color: #e8f5e9; /* Light green background */
+  border: 1px solid #a5d6a7;
+  border-radius: 8px;
+  padding: 10px 15px;
+  font-weight: 600;
+  color: #2e7d32;
+}
+
+.answer-text {
+  font-weight: normal;
+}
