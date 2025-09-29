@@ -4,12 +4,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Api, VideoProcessingResponse } from '../../../services/api';
-import { RouterLink } from '@angular/router';
 import { Quiz } from "../quiz/quiz";
 
 @Component({
   selector: 'app-video-url',
-  imports: [CommonModule, FormsModule, RouterLink, Quiz],
+  standalone: true,
+  imports: [CommonModule, FormsModule, Quiz],
   templateUrl: './video-url.html',
   styleUrl: './video-url.css',
   animations: [
@@ -28,7 +28,7 @@ import { Quiz } from "../quiz/quiz";
     trigger('fadeIn', [
       transition(':enter', [
         style({ opacity: 0 }),
-        animate('0.3s ease-out', style({ opacity: 1 }))
+        animate('0.3s ease-out',)
       ])
     ])
   ]
