@@ -32,47 +32,55 @@
         [disabled]="!videoUrl.trim() || isLoading"
         [class.loading]="isLoading"
       >
-        <span class="btn-text" *ngIf="!isLoading">Submit</span>
-        <div class="spinner" *ngIf="isLoading"></div>
+        @if (!isLoading) {
+          <span class="btn-text">Submit</span>
+        } @else {
+          <div class="spinner"></div>
+        }
       </button>
     </div>
   </div>
 
-  <!-- Loading State -->
-  <div class="loading-section" *ngIf="isLoading" [@slideInUp]>
-    <div class="loading-card">
-      <div class="loading-animation">
-        <div class="pulse-loader"></div>
+  @if (isLoading) {
+    <div class="loading-section" [@slideInUp]>
+      <div class="loading-card">
+        <div class="loading-animation">
+          <div class="pulse-loader"></div>
+        </div>
+        <h3>Processing your video...</h3>
+        <p>This may take a few moments</p>
       </div>
-      <h3>Processing your video...</h3>
-      <p>This may take a few moments</p>
     </div>
-  </div>
+  }
 
-  <!-- Summary Section -->
-  <div class="summary-section" *ngIf="api.summary && !isLoading" [@slideInUp]>
-    <div class="summary-card">
-      <div class="card-header">
-        <h3>Video Summary</h3>
-        <span class="summary-badge">Ready</span>
-      </div>
-      <div class="summary-content">
-        <p>{{ api.summary }}</p>
+  @if (api.summary && !isLoading) {
+    <div class="summary-section" [@slideInUp]>
+      <div class="summary-card">
+        <div class="card-header">
+          <h3>Video Summary</h3>
+          <span class="summary-badge">Ready</span>
+        </div>
+        <div class="summary-content">
+          <p>{{ api.summary }}</p>
+        </div>
       </div>
     </div>
-  </div>
+  }
 
-  <!-- Quiz Section -->
-  <div class="quiz-section" *ngIf="api.summary && !isLoading" [@slideInUp]>
-    <div class="quiz-prompt">
-      <h3>Ready to test your knowledge?</h3>
-      <button class="generate-quiz-btn" (click)="showQuiz = true">
-        ✨ Generate Quiz
-      </button>
+  @if (api.summary && !isLoading) {
+    <div class="quiz-section" [@slideInUp]>
+      <div class="quiz-prompt">
+        <h3>Ready to test your knowledge?</h3>
+        <button class="generate-quiz-btn" (click)="showQuiz = true">
+          ✨ Generate Quiz
+        </button>
+      </div>
+      
+      @if (showQuiz) {
+        <div class="quiz-container" [@expandIn]>
+          <app-quiz></app-quiz>
+        </div>
+      }
     </div>
-    
-    <div class="quiz-container" *ngIf="showQuiz" [@expandIn]>
-      <app-quiz></app-quiz>
-    </div>
-  </div>
+  }
 </div>

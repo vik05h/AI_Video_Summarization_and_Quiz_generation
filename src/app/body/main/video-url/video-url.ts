@@ -1,10 +1,11 @@
-// video-url.ts
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Api, VideoProcessingResponse } from '../../../services/api';
 import { Quiz } from "../quiz/quiz";
+import { DatabaseService } from '../../../services/database';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-video-url',
@@ -40,7 +41,10 @@ export class VideoUrl {
   isLoading: boolean = false;
   showQuiz: boolean = false;
   isGeneratingQuiz: boolean = false;
-  
+
+  private authService = inject(AuthService);
+  private databaseService = inject(DatabaseService);
+  currentUser = this.authService.currentUser;
   constructor(public api: Api) { }
 
   submitUrl(videoUrl: string) {
@@ -58,15 +62,48 @@ export class VideoUrl {
         this.isLoading = false;
         
         console.log("Processing complete", res);
-        console.log("Transcript:", this.api.transcript);
-        console.log("Summary:", this.api.summary);
+        
+        this.saveSummaryToHistory(res, videoUrl);
       },
       error: (error) => {
         console.error('Error processing video:', error);
         this.isLoading = false;
         this.api.summary = 'Error processing video. Please try again.';
       }
-    });
+    }
+  );
+
+  }
+
+  private async saveSummaryToHistory(summaryResponse: VideoProcessingResponse, url: string) {
+    const user = this.currentUser();
+    // Only proceed if a user is logged in
+    if (!user) {
+      console.log('No user logged in, skipping history save.');
+      return;
+    }
+
+    const videoId = this.extractVideoId(url);
+    if (!videoId) {
+      console.error('Could not extract video ID, cannot save to history.');
+      return;
+    }
+
+    // Prepare the data payload for the database service
+    const summaryPayload = {
+      videoId: videoId,
+      title: url, // We use the full URL as a title for now
+      summaryText: summaryResponse.summary
+    };
+
+    try {
+      // Call the database service to save the data
+      console.log('Saving summary to user history...');
+      await this.databaseService.addSummaryToHistory(user.id, summaryPayload);
+      console.log('History saved successfully!');
+    } catch (error) {
+      console.error('Failed to save summary to history:', error);
+    }
   }
   
   // Method to validate YouTube URL (optional enhancement)

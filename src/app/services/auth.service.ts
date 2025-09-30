@@ -58,7 +58,7 @@ export class AuthService {
       console.error('Error signing out:', error.message);
     } else {
       // Redirect to signup or home page after successful sign out
-      this.router.navigate(['/home']);
+      this.router.navigate(['/']);
     }
   }
 }
