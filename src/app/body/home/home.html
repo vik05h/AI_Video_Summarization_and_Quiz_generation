@@ -1,142 +1,157 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
 <body>
 
-<div class="page-wrapper">
-  <!-- Header -->
-  <header class="header">
-    <nav class="navbar">
-      <div class="nav-brand">AI Video Summarizer</div>
-      <div class="nav-links">
-        <a href="#features">Features</a>
-        <a href="#how-it-works">How it works</a>
-      </div>
-    </nav>
-  </header>
-
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-content">
-        <div class="badges">
-          <span class="badge">🤖 AI Powered</span>
-          <span class="badge">⚡ Instant Results</span>
+  <div class="page-wrapper">
+    <!-- Header -->
+    <header class="header">
+      <nav class="navbar">
+        <div class="nav-brand">AI Video Summarizer</div>
+        <div class="nav-links">
+          <a href="#features">Features</a>
+          <a href="#how-it-works">How it works</a>
         </div>
-        
-        <h1 class="hero-title">
-          AI Video Summarizer & Quiz Generator
-        </h1>
-        
-        <p class="hero-subtitle">
-          Turn any lecture or video into concise notes and interactive quizzes, then save progress with Google sign‑in.
-        </p>
+        <div>
+          @if (currentUser(); as user) {
+          <div class="profile-container">
+            <img [src]="user.user_metadata['avatar_url'] || 'assets/default-avatar.png'" alt="Profile Photo"
+              class="profile-avatar" referrerPolicy="no-referrer" (error)="onImageError($event)">
+            <button class="btn btn-secondary" (click)="handleSignOut()">Log Out</button>
+          </div>
+          } @else {
+          <button class="btn btn-primary" (click)="handleGoogleLogin()">SignUp with Google</button>
+          }
+        </div>
+      </nav>
+    </header>
 
-        <div class="cta-buttons">
-          <a routerLink="/url" class="switch-button">yt</a>
-          <button class="btn btn-primary" routerLink="/url">
-            <i class="pi pi-link"></i>
-            Paste YouTube URL
-          </button>
-          <button class="btn btn-secondary" routerLink="/upload">
-            <i class="pi pi-upload"></i>
-            Upload Video
-          </button>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="badges">
+            <span class="badge">🤖 AI Powered</span>
+            <span class="badge">⚡ Instant Results</span>
+          </div>
+
+          <h1 class="hero-title">
+            AI Video Summarizer & Quiz Generator
+          </h1>
+
+          <p class="hero-subtitle">
+            Turn any lecture or video into concise notes and interactive quizzes, then save progress with Google
+            sign‑in.
+          </p>
+
+          <div class="cta-buttons">
+            <a routerLink="/url" class="switch-button">yt</a>
+            <button class="btn btn-primary" routerLink="/url">
+              <i class="pi pi-link"></i>
+              Paste YouTube URL
+            </button>
+            <button class="btn btn-secondary" routerLink="/upload">
+              <i class="pi pi-upload"></i>
+              Upload Video
+            </button>
+          </div>
+
+          <div class="input-section">
+            <p class="input-hint">Try it with any educational video or tutorial</p>
+          </div>
         </div>
 
-        <div class="input-section">
-          <p class="input-hint">Try it with any educational video or tutorial</p>
-        </div>
-      </div>
-
-      <div class="hero-visual">
-        <div class="video-mockup">
-          <div class="screen">
-            <div class="play-button">▶</div>
-            <div class="progress-bar">
-              <div class="progress"></div>
+        <div class="hero-visual">
+          <div class="video-mockup">
+            <div class="screen">
+              <div class="play-button">▶</div>
+              <div class="progress-bar">
+                <div class="progress"></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Features Section -->
-  <section class="features" id="features">
-    <div class="container">
-      <h2 class="section-title">Why Choose Our Platform?</h2>
-      <p class="section-subtitle">Three powerful features that revolutionize your learning</p>
-      
-      <div class="feature-grid">
-        <div class="feature-card">
-          <div class="feature-icon">🎥</div>
-          <h3>Universal Input</h3>
-          <p>Support for YouTube URLs and direct video uploads with automatic format detection</p>
-          <span class="feature-tag">Smart Detection</span>
-        </div>
+    <!-- Features Section -->
+    <section class="features" id="features">
+      <div class="container">
+        <h2 class="section-title">Why Choose Our Platform?</h2>
+        <p class="section-subtitle">Three powerful features that revolutionize your learning</p>
 
-        <div class="feature-card featured">
-          <div class="feature-icon">🧠</div>
-          <h3>AI Summarization</h3>
-          <p>Advanced AI extracts key concepts, timestamps, and creates comprehensive summaries</p>
-          <span class="feature-tag">Most Popular</span>
-        </div>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🎥</div>
+            <h3>Universal Input</h3>
+            <p>Support for YouTube URLs and direct video uploads with automatic format detection</p>
+            <span class="feature-tag">Smart Detection</span>
+          </div>
 
-        <div class="feature-card">
-          <div class="feature-icon">🎯</div>
-          <h3>Smart Quizzes</h3>
-          <p>Generate adaptive quizzes with multiple choice and short answer questions</p>
-          <span class="feature-tag">Adaptive</span>
+          <div class="feature-card featured">
+            <div class="feature-icon">🧠</div>
+            <h3>AI Summarization</h3>
+            <p>Advanced AI extracts key concepts, timestamps, and creates comprehensive summaries</p>
+            <span class="feature-tag">Most Popular</span>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">🎯</div>
+            <h3>Smart Quizzes</h3>
+            <p>Generate adaptive quizzes with multiple choice and short answer questions</p>
+            <span class="feature-tag">Adaptive</span>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- How it Works -->
-  <section class="process" id="how-it-works">
-    <div class="container">
-      <h2 class="section-title">How it Works</h2>
-      
-      <div class="steps">
-        <div class="step">
-          <div class="step-number">1</div>
-          <h3>Add Video</h3>
-          <p>Paste YouTube link or upload your file</p>
-        </div>
-        
-        <div class="step">
-          <div class="step-number">2</div>
-          <h3>AI Analysis</h3>
-          <p>Our AI processes and extracts key information</p>
-        </div>
-        
-        <div class="step">
-          <div class="step-number">3</div>
-          <h3>Generate Content</h3>
-          <p>Summary and quiz questions are created</p>
-        </div>
-        
-        <div class="step">
-          <div class="step-number">4</div>
-          <h3>Learn & Test</h3>
-          <p>Review summary and take the quiz</p>
+    <!-- How it Works -->
+    <section class="process" id="how-it-works">
+      <div class="container">
+        <h2 class="section-title">How it Works</h2>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <h3>Add Video</h3>
+            <p>Paste YouTube link or upload your file</p>
+          </div>
+
+          <div class="step">
+            <div class="step-number">2</div>
+            <h3>AI Analysis</h3>
+            <p>Our AI processes and extracts key information</p>
+          </div>
+
+          <div class="step">
+            <div class="step-number">3</div>
+            <h3>Generate Content</h3>
+            <p>Summary and quiz questions are created</p>
+          </div>
+
+          <div class="step">
+            <div class="step-number">4</div>
+            <h3>Learn & Test</h3>
+            <p>Review summary and take the quiz</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CTA -->
-  <section class="cta">
-    <div class="container">
-      <h2>Ready to Transform Your Learning?</h2>
-      <p>Join thousands of learners who save hours every day</p>
-      <button class="btn btn-large">Get Started Free</button>
-    </div>
-  </section>
-</div>
+    <!-- CTA -->
+    <section class="cta">
+      <div class="container">
+        <h2>Ready to Transform Your Learning?</h2>
+        <p>Join thousands of learners who save hours every day</p>
+        <button class="btn btn-large">Get Started Free</button>
+      </div>
+    </section>
+  </div>
 
 </body>
+
 </html>

@@ -43,7 +43,4 @@ Thumbs.db
 
 
 .venv
-.env/
-env/
-.env
 .env

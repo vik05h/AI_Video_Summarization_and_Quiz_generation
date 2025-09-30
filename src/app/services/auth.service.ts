@@ -29,7 +29,7 @@ export class AuthService {
       // Optional: Redirect on login/logout
       if (event === 'SIGNED_IN') {
         // You can redirect the user to a dashboard or home page after login
-        this.router.navigate(['/dashboard']); 
+        this.router.navigate(['/']); 
       }
     });
   }
@@ -58,7 +58,7 @@ export class AuthService {
       console.error('Error signing out:', error.message);
     } else {
       // Redirect to signup or home page after successful sign out
-      this.router.navigate(['/signup']);
+      this.router.navigate(['/home']);
     }
   }
 }

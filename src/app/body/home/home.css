@@ -461,3 +461,30 @@ body {
     height: 50px;
   }
 }
+/* src/app/body/dashboard/home.css */
+
+.profile-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profile-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  object-fit: cover;
+}
+
+.header .profile-container .btn-secondary {
+  color: #667eea; /* A visible color, like the primary button text */
+  background-color: transparent; /* Make background transparent */
+  border: 2px solid #e2e8f0; /* A light gray border */
+}
+
+/* Optional: Add a subtle hover effect */
+.header .profile-container .btn-secondary:hover {
+  background-color: #f8fafc; 
+  border-color: #cbd5e1;
+}
